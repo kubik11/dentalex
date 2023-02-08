@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+		<!-- The page -->
+        <div class="page">
+            <div id="header">
+                <a href="#menu"><span></span></a>
+                DENTALEX
+            </div>
+            <div class="content">
+
+              {% include 'includes/header.html' %}
+
+              <section class="offers">
+                 <h2 class="cap-tion container">
+                      Наші послуги
+                 </h2>
+                 <div class="wrap-offers-item container"> 
+                     <div class="offers-item">
+                       <img src="{% static 'img/pic_1.jpg' %}">
+                       <div class="offers-item-inner">
+                         <a href="#">Лікування зубів</a>
+                       </div>
+                       <div class="overlay"></div>
+                     </div>
+                     <div class="offers-item">
+                       <img src="{% static 'img/pic_2.jpg' %}">
+                       <div class="offers-item-inner">
+                         <a href="implant.html">Імплантація зубів</a>
+                       </div>
+                       <div class="overlay"></div>
+                     </div>            
+                     <div class="offers-item">
+                       <img src="{% static 'img/pic_3.jpg' %}">
+                       <div class="offers-item-inner">
+                         <a href="#">Естетична стоматологія</a>
+                       </div>
+                       <div class="overlay"></div>
+                     </div>
+                     <div class="offers-item">
+                       <img src="{% static 'img/pic_2.jpg' %}">
+                       <div class="offers-item-inner">
+                         <a href="#">Протезування</a>
+                       </div>
+                       <div class="overlay"></div>
+                     </div>
+                      <div class="offers-item">
+                       <img src="{% static 'img/pic_1.jpg' %}">
+                       <div class="offers-item-inner">
+                         <a href="#">Дитяча стоматологія</a>
+                       </div>
+                       <div class="overlay"></div>
+                     </div>
+                     <div class="offers-item">
+                       <img src="{% static 'img/pic_2.jpg' %}">
+                       <div class="offers-item-inner">
+                         <a href="#">Хірургія</a>
+                       </div>
+                       <div class="overlay"></div>
+                     </div>            
+                     <div class="offers-item">
+                       <img src="{% static 'img/pic_3.jpg' %}">
+                       <div class="offers-item-inner">
+                         <a href="#">Косметичне лікування</a>
+                       </div>
+                       <div class="overlay"></div>
+                     </div>
+                     <div class="offers-item">
+                       <img src="{% static 'img/pic_2.jpg' %}">
+                       <div class="offers-item-inner">
+                         <a href="#">Протезування</a>
+                       </div>
+                       <div class="overlay"></div>
+                     </div>
+                 </div>
+              </section>
+
+              {% include 'includes/footer.html' %}
+
+            </div>
+        </div>
+        {% endblock %}

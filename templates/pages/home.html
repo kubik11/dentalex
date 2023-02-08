@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+		<!-- The page -->
+        <div class="page">
+            <div id="header">
+                <a href="#menu"><span></span></a>
+                DENTALEX
+            </div>
+            <div class="content">
+              {% include 'includes/header.html' %}
+               <div class="wrap-custom-banner">
+                  <div class="banner">
+                    <div class="owl-carousel">
+                      <div class="banner-carousel-item">
+                        <img src="{% static 'img/photo_1.jpeg' %}">
+                        <div class="wrap-adv">
+                          <h2 class="adv" id="a_d_v">Dentalex надає величезний спектор послуг на найвищому рівні ...</h2>
+                        </div>    
+                      </div>
+                       <div class="banner-carousel-item">
+                        <img src="{% static 'img/photo_2.jpeg' %}">
+                        <div class="wrap-adv"> <h2 class="adv">Dentalex</h2></div>
+                      </div>
+                        <div class="banner-carousel-item">
+                          <img src="{% static 'img/photo_3.jpeg' %}">
+                          <div class="wrap-adv">
+                            <h2 class="adv">Dentalex</h2>
+                          </div>
+                        </div>
+                    </div>
+                  </div>  
+               </div>
+               <section class="offers">
+                 <h2 class="cap-tion container">
+                      Наші послуги
+                 </h2>
+                 <div class="wrap-offers-item container"> 
+                     <div class="offers-item">
+                       <img src="{% static 'img/pic_1.jpg' %}">
+                       <div class="offers-item-inner">
+                         <a href="#">Лікування зубів</a>
+                       </div>
+                       <div class="overlay"></div>
+                     </div>
+                     <div class="offers-item">
+                       <img src="{% static 'img/pic_2.jpg' %}">
+                       <div class="offers-item-inner">
+                         <a href="implant.html">Імплантація зубів</a>
+                       </div>
+                       <div class="overlay"></div>
+                     </div>            
+                     <div class="offers-item">
+                       <img src="{% static 'img/pic_3.jpg' %}">
+                       <div class="offers-item-inner">
+                         <a href="#">Косметичне лікування</a>
+                       </div>
+                       <div class="overlay"></div>
+                     </div>
+                     <div class="offers-item">
+                       <img src="{% static 'img/pic_2.jpg' %}">
+                       <div class="offers-item-inner">
+                         <a href="#">Протезування</a>
+                       </div>
+                       <div class="overlay"></div>
+                     </div>
+                 </div>
+                 <div class="wrap-more-service">
+                  <a href="{% url 'services' %}" class="more-service">Більше послуг</a>  
+                 </div>
+               </section>
+               <section class="ours-team">
+                <div class="wrap-ours-team container">
+                  <h2 class="cap-tion">
+                    Наша команда
+                  </h2>
+                  <div class="grid">
+                    <div class="grid-item grid-sizer"><img src="{% static 'img/pic_1.jpg' %}"></div>
+                    <div class="grid-item grid-item-width2"><img src="{% static 'img/photo_4.jpeg' %}"></div>
+                    <div class="grid-item"><img src="{% static 'img/pic_2.jpg' %}"></div>
+                    <div class="grid-item"><img src="{% static 'img/photo_1.jpeg' %}"></div>
+                    <div class="grid-item"><img src="{% static 'img/photo_2.jpeg' %}"></div>
+                     <div class="grid-item grid-item-width2"><img src="{% static 'img/photo_4.jpeg' %}"></div>
+                    <div class="grid-item"><img src="{% static 'img/pic_2.jpg' %}"></div>
+                    <div class="grid-item"><img src="{% static 'img/photo_1.jpeg' %}"></div>
+                    <div class="grid-item"><img src="{% static 'img/photo_2.jpeg' %}"></div>
+                  </div>
+                </div>   
+               </section>
+
+            {% include 'includes/footer.html' %}
+
+            </div>
+        </div>
+{% endblock %}
