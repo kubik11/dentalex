@@ -1,0 +1,41 @@
+#header {
+	background-color: #fff;
+	color: #666666;
+	box-shadow: 0px 0px 4px 0px #240e0d;
+}
+#header a:link, #header a:visited, #logout-form button {
+	color: #240e0d;
+}
+#header a:link:hover {
+	color: green !important;
+}
+#header a:visited:hover {
+	color: green !important;
+}
+#logout-form button:hover {
+	color: green !important;
+}
+#user-tools, #logout-form button {
+	font-size: 0.8rem;
+	font-weight: 400;
+}
+#main {
+	background-color: #ededed;
+}
+.module caption {
+	background-color: #273830;
+}
+div.breadcrumbs {
+	background-color: #273830;
+}
+#content-related .module h2 {
+	background-color: #273830;
+	color: #fff;
+}
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+	background-color: #273830;
+}
+.button:active, input[type=submit]:active, input[type=button]:active, .button:focus, input[type=submit]:focus, input[type=button]:focus, .button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background-color: #273830;
+    opacity: 0.9;
+}

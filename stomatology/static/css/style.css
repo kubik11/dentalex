@@ -1,3 +1,12 @@
+.mm-menu a, 
+.mm-menu a:active, 
+.mm-menu a:hover,  
+.mm-menu a:link,  
+.mm-menu a {
+  font-size: 20px;
+  padding: 20px;
+}
+
 .cap-tion {
   padding: 20px 0px;
   font-size: 40px;
@@ -41,6 +50,7 @@ a:hover {
   align-items: center;
   justify-content: center;
   background: linear-gradient(#000, 70%, pink);
+  z-index: 100;
 }
 #preloader img {
   display: inline-block;
@@ -195,8 +205,13 @@ nav:not(.mm-menu) {
 }
 
 /*Styling logo*/
+.wrap-logo {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
 .wrap-logo .logo {
-  vertical-align: middle;
   cursor: pointer;
 }
 .wrap-logo .logo img {
@@ -204,12 +219,7 @@ nav:not(.mm-menu) {
   width: 100%;
   height: 50px;
 }
-.wrap-logo:before {
-  content: "";
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-}
+
 
 /* Styling the carousel*/
 .banner-carousel-item {
@@ -260,23 +270,25 @@ nav:not(.mm-menu) {
   background-color: #ededed;
   padding: 15px 15px;
 }
-.offers .wrap-offers-item {
+
+.wrap-offers-item {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
-.offers .wrap-offers-item .offers-item {
+.wrap-offers-item .offers-item {
   transition: 0.5s all ease;
   margin: 15px 15px;
   flex: 400px;
+  height: 300px;
   position: relative;
 }
-.offers .wrap-offers-item .offers-item img {
+.wrap-offers-item .offers-item img {
   height: 100%;
   width: 100%;
   max-width: 100%;
 }
-.offers .wrap-offers-item .offers-item .offers-item-inner {
+.wrap-offers-item .offers-item .offers-item-inner {
   display: flex;
   /*text-align: center*/
   top: 0;
@@ -287,7 +299,7 @@ nav:not(.mm-menu) {
   height: 100%;
   text-align: center;
 }
-.offers .wrap-offers-item .offers-item .offers-item-inner a {
+.wrap-offers-item .offers-item .offers-item-inner a {
   transition: 0.5s all ease;
   margin: auto;
   text-decoration: none;
@@ -297,7 +309,7 @@ nav:not(.mm-menu) {
   text-shadow: 2px 0 4px #4e0b5c;
   line-height: 1.2;
 }
-.offers .wrap-offers-item .offers-item .overlay {
+.wrap-offers-item .offers-item .overlay {
   transition: 0.5s all ease;
   top: 0;
   left: 0;
@@ -309,14 +321,14 @@ nav:not(.mm-menu) {
   width: 100%;
   height: 100%;
 }
-.offers .wrap-offers-item .offers-item:hover .offers-item-inner {
+.wrap-offers-item .offers-item:hover .offers-item-inner {
   transition: 0.5s all ease;
   top: 0;
   left: 0;
   position: absolute;
   z-index: 2;
 }
-.offers .wrap-offers-item .offers-item:hover .offers-item-inner a {
+.wrap-offers-item .offers-item:hover .offers-item-inner a {
   transition: 0.5s all ease;
   display: block;
   font-size: 30px;
@@ -326,7 +338,7 @@ nav:not(.mm-menu) {
   border-radius: 10px;
   background-color: #65ab36;
 }
-.offers .wrap-offers-item .offers-item:hover .overlay {
+.wrap-offers-item .offers-item:hover .overlay {
   transition: 0.5s all ease;
   top: 0;
   left: 0;
@@ -602,6 +614,152 @@ nav:not(.mm-menu) {
   width: 100%;
   height: 400px;
 }
+/*Start section team*/
+.team {
+  background-color: #ededed;
+}
+.team .wrap-team-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px 0px 60px 0px;
+}
+.team .wrap-team-item .team-item {
+  padding: 20px;
+}
+.team .wrap-team-item .team-item .team-photo img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px #65ab36;
+}
+.team .wrap-team-item .team-item .team-inner {
+  padding: 20px 0px;
+}
+.team .wrap-team-item .team-item .team-inner .team-position {
+  text-align: center;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 25px;
+}
+.team .wrap-team-item .team-item .team-inner .team-name {
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+  font-size: 25px;
+}
+/*End section team*/
+
+/*Slick gallery start*/
+.swiper-pagination-bullet {
+    width: var(--swiper-pagination-bullet-width,var(--swiper-pagination-bullet-size,8px));
+    height: var(--swiper-pagination-bullet-height,var(--swiper-pagination-bullet-size,8px));
+    display: inline-block;
+    border-radius: 50%;
+    background: var(--swiper-pagination-bullet-inactive-color,#fff);
+    opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.6);
+}
+.swiper-pagination-bullet-active {
+    opacity: var(--swiper-pagination-bullet-opacity, 1);
+    background: green;
+}
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+    bottom: var(--swiper-pagination-bottom,25px);
+    top: var(--swiper-pagination-to);
+    left: 0;
+    width: 100%;
+}
+.close-swiper {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.5s all ease;
+  animation: rot 3s infinite linear;
+  padding: 5px;
+}
+@keyframes rot {
+  from {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.close-swiper:hover {
+  transition: 0.5s all ease;
+  font-size: 32;
+  color: green;
+  opacity: 0.8;
+  cursor: pointer;
+}
+.swiper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  z-index: 1000; 
+}
+.swiper:before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #332c4c;
+    opacity: 0.9;
+  }
+.swiper-wrapper {
+  height: 60%;
+  width: 90%;
+}
+.swiper-wrapper .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.swiper-slide {
+  width: 60%;
+}
+
+.swiper-slide:nth-child(2n) {
+  width: 40%;
+}
+
+.swiper-slide:nth-child(3n) {
+  width: 20%;
+}
+
+/*Slick gallery end*/
+
 
 /*@import './untils/variables'*/
 @media only screen and (max-width: 400px) {

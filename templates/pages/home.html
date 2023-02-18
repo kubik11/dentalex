@@ -13,23 +13,31 @@
               {% include 'includes/header.html' %}
                <div class="wrap-custom-banner">
                   <div class="banner">
-                    <div class="owl-carousel">
+                    <div class="owl-carousel" id="owl_1">
                       <div class="banner-carousel-item">
-                        <img src="{% static 'img/photo_1.jpeg' %}">
+                        <img src= '{{ data_banner.banner_photo_1.url }}'>
                         <div class="wrap-adv">
-                          <h2 class="adv" id="a_d_v">Dentalex надає величезний спектор послуг на найвищому рівні ...</h2>
+                          <h2 class="adv" id="a_d_v">{{ data_banner.banner_ad }}</h2>
                         </div>    
                       </div>
                        <div class="banner-carousel-item">
-                        <img src="{% static 'img/photo_2.jpeg' %}">
+                        <img src="{{ data_banner.banner_photo_2.url }}">
                         <div class="wrap-adv"> <h2 class="adv">Dentalex</h2></div>
                       </div>
                         <div class="banner-carousel-item">
-                          <img src="{% static 'img/photo_3.jpeg' %}">
+                          <img src="{{ data_banner.banner_photo_3.url }}">
                           <div class="wrap-adv">
                             <h2 class="adv">Dentalex</h2>
                           </div>
                         </div>
+                        {% if data.banner_photo_4 %}
+                          <div class="banner-carousel-item">
+                          <img src="{{ data_banner.banner_photo_4.url }}">
+                          <div class="wrap-adv">
+                            <h2 class="adv">Dentalex</h2>
+                          </div>
+                        </div>
+                        {% endif %}
                     </div>
                   </div>  
                </div>
@@ -38,34 +46,15 @@
                       Наші послуги
                  </h2>
                  <div class="wrap-offers-item container"> 
+                  {% for item in data_service %}
                      <div class="offers-item">
-                       <img src="{% static 'img/pic_1.jpg' %}">
+                       <img src="{{ item.service_photo.url }}">
                        <div class="offers-item-inner">
-                         <a href="#">Лікування зубів</a>
+                         <a href="{% url 'service_info' item.id %}">{{ item.service_title }}</a>
                        </div>
                        <div class="overlay"></div>
                      </div>
-                     <div class="offers-item">
-                       <img src="{% static 'img/pic_2.jpg' %}">
-                       <div class="offers-item-inner">
-                         <a href="implant.html">Імплантація зубів</a>
-                       </div>
-                       <div class="overlay"></div>
-                     </div>            
-                     <div class="offers-item">
-                       <img src="{% static 'img/pic_3.jpg' %}">
-                       <div class="offers-item-inner">
-                         <a href="#">Косметичне лікування</a>
-                       </div>
-                       <div class="overlay"></div>
-                     </div>
-                     <div class="offers-item">
-                       <img src="{% static 'img/pic_2.jpg' %}">
-                       <div class="offers-item-inner">
-                         <a href="#">Протезування</a>
-                       </div>
-                       <div class="overlay"></div>
-                     </div>
+                  {% endfor %}
                  </div>
                  <div class="wrap-more-service">
                   <a href="{% url 'services' %}" class="more-service">Більше послуг</a>  
@@ -74,18 +63,12 @@
                <section class="ours-team">
                 <div class="wrap-ours-team container">
                   <h2 class="cap-tion">
-                    Наша команда
+                    Наші світлини
                   </h2>
                   <div class="grid">
-                    <div class="grid-item grid-sizer"><img src="{% static 'img/pic_1.jpg' %}"></div>
-                    <div class="grid-item grid-item-width2"><img src="{% static 'img/photo_4.jpeg' %}"></div>
-                    <div class="grid-item"><img src="{% static 'img/pic_2.jpg' %}"></div>
-                    <div class="grid-item"><img src="{% static 'img/photo_1.jpeg' %}"></div>
-                    <div class="grid-item"><img src="{% static 'img/photo_2.jpeg' %}"></div>
-                     <div class="grid-item grid-item-width2"><img src="{% static 'img/photo_4.jpeg' %}"></div>
-                    <div class="grid-item"><img src="{% static 'img/pic_2.jpg' %}"></div>
-                    <div class="grid-item"><img src="{% static 'img/photo_1.jpeg' %}"></div>
-                    <div class="grid-item"><img src="{% static 'img/photo_2.jpeg' %}"></div>
+                    {% for item in data_gallery %}
+                    <div class="grid-item"><img src="{{ item.photo.url }}"></div>
+                    {% endfor %}
                   </div>
                 </div>   
                </section>

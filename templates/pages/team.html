@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+		<!-- The page -->
+        <div class="page">
+            <div id="header">
+                <a href="#menu"><span></span></a>
+                DENTALEX
+            </div>
+            <div class="content">
+
+              {% include 'includes/header.html' %}
+
+                <section class="team">
+                 <h2 class="cap-tion container">
+                      Нашa команда
+                 </h2>
+                 <div class="wrap-team-item container">
+                 {% for item in data_team %} 
+                    <div class="team-item">
+                       <div class="team-photo">
+                         <img src="{{ item.team_photo.url }}">
+                       </div>
+                       <div class="team-inner">
+                         <span class="team-position">{{ item.team_position }}</span>
+                         <span class="team-name">{{ item.team_name }}</span>
+                       </div>
+                       <div class="team-overlay">
+                       </div>
+                    </div>
+                 {% endfor %}
+                 </div>
+               </section>
+
+  			  {% include 'includes/footer.html' %}
+
+            </div>
+        </div>
+{% endblock %}

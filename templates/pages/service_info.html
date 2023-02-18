@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+		<!-- The page -->
+        <div class="page">
+            <div id="header">
+                <a href="#menu"><span></span></a>
+                DENTALEX
+            </div>
+            <div class="content">
+
+              {% include 'includes/header.html' %}
+
+              	 <article class="article"> 
+                  <div class="container">
+                    <div class="wrap-article">
+                      <h2 class="cap-tion">{{ data_info.service_title }}</h2>
+                      <div class="wrap-article-img">  
+                         <img src="{{ data_info.service_photo.url }}">
+                      </div>
+                      <div class="description">
+                      	<p>{{ data_info.service_description|safe }}</p>
+                      </div>  
+                    </div>
+                  </div>
+                </article>
+
+              {% include 'includes/footer.html' %}
+
+      		</div>
+        </div>
+{% endblock %}

@@ -18,62 +18,15 @@
                       Наші послуги
                  </h2>
                  <div class="wrap-offers-item container"> 
+                  {% for item in data_service %}
                      <div class="offers-item">
-                       <img src="{% static 'img/pic_1.jpg' %}">
+                       <img src="{{ item.service_photo.url }}">
                        <div class="offers-item-inner">
-                         <a href="#">Лікування зубів</a>
+                         <a href="{% url 'service_info' item.id %}">{{ item.service_title }}</a>
                        </div>
                        <div class="overlay"></div>
                      </div>
-                     <div class="offers-item">
-                       <img src="{% static 'img/pic_2.jpg' %}">
-                       <div class="offers-item-inner">
-                         <a href="implant.html">Імплантація зубів</a>
-                       </div>
-                       <div class="overlay"></div>
-                     </div>            
-                     <div class="offers-item">
-                       <img src="{% static 'img/pic_3.jpg' %}">
-                       <div class="offers-item-inner">
-                         <a href="#">Естетична стоматологія</a>
-                       </div>
-                       <div class="overlay"></div>
-                     </div>
-                     <div class="offers-item">
-                       <img src="{% static 'img/pic_2.jpg' %}">
-                       <div class="offers-item-inner">
-                         <a href="#">Протезування</a>
-                       </div>
-                       <div class="overlay"></div>
-                     </div>
-                      <div class="offers-item">
-                       <img src="{% static 'img/pic_1.jpg' %}">
-                       <div class="offers-item-inner">
-                         <a href="#">Дитяча стоматологія</a>
-                       </div>
-                       <div class="overlay"></div>
-                     </div>
-                     <div class="offers-item">
-                       <img src="{% static 'img/pic_2.jpg' %}">
-                       <div class="offers-item-inner">
-                         <a href="#">Хірургія</a>
-                       </div>
-                       <div class="overlay"></div>
-                     </div>            
-                     <div class="offers-item">
-                       <img src="{% static 'img/pic_3.jpg' %}">
-                       <div class="offers-item-inner">
-                         <a href="#">Косметичне лікування</a>
-                       </div>
-                       <div class="overlay"></div>
-                     </div>
-                     <div class="offers-item">
-                       <img src="{% static 'img/pic_2.jpg' %}">
-                       <div class="offers-item-inner">
-                         <a href="#">Протезування</a>
-                       </div>
-                       <div class="overlay"></div>
-                     </div>
+                  {% endfor %}
                  </div>
               </section>
 
@@ -81,4 +34,4 @@
 
             </div>
         </div>
-        {% endblock %}
+{% endblock %}

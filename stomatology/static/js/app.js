@@ -1,9 +1,51 @@
+let api_mmenu;
 //Hide preloader
 $(document).ready(() => {
     $('#preloader').fadeOut(400);
+    let lang = document.querySelector('#l_ang').textContent;
+    chouse_lang( lang );
+    //initialization slick gallery
+    const gallery = $('.swiper');
+    let swiper;
+    $('.gallery-id').click((e) => {
+        e.preventDefault();
+        api_mmenu.close(); // In order to shift out menu in mobile 
+        gallery.css('display', 'flex');
+        swiper = new Swiper('.swiper', {
+          loop: true,
+          slidesPerView: "auto",
+          centeredSlides: true,
+          spaceBetween: 30,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+        });
+    });
+    $('#close-swiper').click(() => {
+        swiper.destroy();
+        gallery.css('display',  'none');
+    });
+
+    //Initialization masonry
+    (() => {
+        let grid_list = document.querySelectorAll('.grid-item');
+        for (let i = 0; i < grid_list.length; i++) {
+           if( i == 1){
+               grid_list[i].classList.add('grid-item-width2');
+            }
+            if( i == 5){
+               grid_list[i].classList.add('grid-item-width2');
+            }
+        }
+    })();
+    $('.grid').masonry({
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-item',
+        percentPosition: true
+    });
 });
 
-let api_mmenu;
 document.addEventListener(
     "DOMContentLoaded", () => {
         const menu = new Mmenu( "#menu", {
@@ -21,7 +63,7 @@ document.addEventListener("click", function (evnt) {
   var anchor = evnt.target.closest('a[href="#/"]');
 });
 
-$(".owl-carousel").owlCarousel({
+$("#owl_1").owlCarousel({
     autoPlay: 9000,
     slideSpeed : 1000,
     //items : 1,
@@ -48,9 +90,9 @@ $(window).scroll(function(){
     }
 });
 
-let ua_lang = ['Головна', 'Команда', 'Послуги', 'Блог', 'Контакти', 'UA'];
-let ru_lang = ['Главная', 'Команда', 'Услуги', 'Блог', 'Контакты', 'RU'];
-let en_lang = ['Main', 'Team', 'Services', 'Blog', 'Contacts', 'EN'];
+let ua_lang = ['Головна', 'Команда', 'Послуги', 'Галерея', 'Контакти', 'UA'];
+let ru_lang = ['Главная', 'Команда', 'Услуги', 'Галерея', 'Контакты', 'RU'];
+let en_lang = ['Main', 'Team', 'Services', 'Gallery', 'Contacts', 'EN'];
 
 const languges = document.querySelectorAll('.chouse');
 const lang_array = [].slice.call(languges);
@@ -65,11 +107,10 @@ const change_lang_nav = (lang_list, nav_items_array) => {
         nav_items_array[i].textContent = lang_list[i%6]; 
     }
 }
-const lang_click_handler = (elem) => {
-    elem.preventDefault(); 
-    let data_attribute = elem.srcElement.dataset.lang;
+const chouse_lang = (data_attribute) => {
     let nav_items_array = get_nav_items(); // get navigation list
-    if (data_attribute == 'EN') {
+
+     if (data_attribute == 'EN') {
         change_lang_nav(en_lang, nav_items_array);
     }
     if (data_attribute == 'RU') {
@@ -78,6 +119,15 @@ const lang_click_handler = (elem) => {
     if (data_attribute == 'UA') {
         change_lang_nav(ua_lang, nav_items_array);
     }
+}
+const lang_click_handler = (elem) => {
+    elem.preventDefault(); 
+    let data_attribute = elem.srcElement.dataset.lang;
+    $.get(
+     'lang', {data : data_attribute},
+    );
+
+    chouse_lang( data_attribute );
 }
 
 lang_array.forEach((elem) => {
@@ -133,9 +183,6 @@ geo_close.click(() => {
     let timer = setInterval( type, 300, ad_list);
 })();
 
-//Initialization masonry
-$('.grid').masonry({
-    itemSelector: '.grid-item',
-    columnWidth: '.grid-sizer',
-    percentPosition: true
-});
+
+
+

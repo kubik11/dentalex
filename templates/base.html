@@ -1,5 +1,10 @@
 {% load static %}
 
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,10 +20,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/mmenu.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}">
      <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'css/swiper-bundle.min.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <title>Dentalex</title>
     <meta name="description" content="Стоматология Dentalex">
     <meta property="og:locale" content="ru_RU">
@@ -27,6 +33,9 @@
 
   </head>
   <body>	
+    <div id="preloader">
+      <img src="{% static 'img/tooth.gif' %}" alt="preloader">
+    </div>
   	{% block content %}
 
 	{% endblock %}
@@ -34,11 +43,17 @@
         <!-- The menu -->
         <nav id="menu">
             <ul class="parent-list">
-                <li><a href="#" class="nav-item">Головна</a></li>
-                <li><a href="#" class="nav-item">Команда</a></li>
-                <li><a href="services.html" class="nav-item">Послуги</a></li>
-                <li><a href="#" class="nav-item">Блог</a></li>
-                <li><a href="#" class="nav-item">Контакти</a></li>
+                <li><a href="{% url 'home' %}" class="nav-item">Головна</a></li>
+                <li><a href="{% url 'team' %}" class="nav-item">Команда</a></li>
+                <li><a href="{% url 'services' %}" class="nav-item">Послуги</a></li>
+                <li><a href="#" class="nav-item gallery-id">Галерея</a></li>
+                <li><a href="#" class="nav-item">Контакти</a>
+                  <ul>
+                      <li> <span>Адреса :м.Миколаїв, вул. Севастопольська 65</span></li>
+                      <li> <span>Графік роботи :Пн-Сб 9:00 - 18:00</span></li>
+                      <li> <span>Телефон : +380674348283</span></li>
+                    </ul>
+                </li>
                 <li><a class="lang nav-item">UA</a>
                     <ul>
                         <li><a href="#" class="lang chouse" data-lang = 'RU'> RU </a></li>
@@ -81,9 +96,24 @@
              </div>
           </div> 
         </div>
-        <div id="preloader">
-          <img src="{% static 'img/tooth.gif' %}" alt="preloader">
-        </div>
+        <!-- Slick slider area start -->
+        <div class="swiper"> 
+           <span class="close-swiper" id="close-swiper">X</span>
+          <div class="swiper-wrapper container"> 
+            {% for item in data_gallery %}
+            <div class="gallery-item swiper-slide">  
+              <img src="{{ item.photo.url }}">
+            </div>
+            {% endfor %} 
+          </div>
+          <div class="swiper-pagination"></div>
+          <!-- If we need navigation buttons 
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>-->
+          <!-- If we need scrollbar 
+          <div class="swiper-scrollbar"></div>-->
+        </div>  
+         <!-- Slick slider area end -->
    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
    <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -91,6 +121,7 @@
    <script type="text/javascript" src="{% static 'js/owl.carousel.min.js' %}"></script>
    <script type="text/javascript" src="{% static 'js/mmenu.js' %}"></script>
    <script type="text/javascript" src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+   <script type="text/javascript" src="{% static 'js/swiper-bundle.min.js' %}"></script>
    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
   </body>
 </html>
