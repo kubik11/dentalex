@@ -38,4 +38,16 @@ class SocialLink(models.Model):
 class Gallery(models.Model):
 	photo = models.ImageField(upload_to = 'photos')
 	choused = models.BooleanField(default = True)
+
+class Review(models.Model):
+	name = models.CharField(max_length = 50)
+	body = models.TextField()
+	created = models.DateTimeField(auto_now_add=True)
+	active = models.BooleanField(default=True)
+
+	class Meta:
+		ordering = ('created',)
+
+	def __str__(self):
+		return 'Review by {}.'.format(self.name)
 		

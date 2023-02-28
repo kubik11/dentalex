@@ -5,13 +5,13 @@ $(document).ready(() => {
     let lang = document.querySelector('#l_ang').textContent;
     chouse_lang( lang );
     //initialization slick gallery
-    const gallery = $('.swiper');
+    const gallery = $('.swiper-gallary');
     let swiper;
     $('.gallery-id').click((e) => {
         e.preventDefault();
         api_mmenu.close(); // In order to shift out menu in mobile 
         gallery.css('display', 'flex');
-        swiper = new Swiper('.swiper', {
+        swiper = new Swiper('.swiper-gallary', {
           loop: true,
           slidesPerView: "auto",
           centeredSlides: true,
@@ -19,14 +19,113 @@ $(document).ready(() => {
           pagination: {
             el: ".swiper-pagination",
             clickable: true,
-          },
+          }
         });
     });
     $('#close-swiper').click(() => {
         swiper.destroy();
         gallery.css('display',  'none');
     });
-
+    //Initialization of reviews
+    let reviews;
+    reviews = new Swiper('.swiper-reviews', {
+        direction: 'vertical',
+        pagination: {
+            el: ".reviews-pagination",
+            clickable: true,
+        },
+    }); 
+    //Initialization of reviews end
+    //To embed a csrf token i each AJAX request
+    $(() => {
+        $.ajaxSetup({
+            headers: {"X-CSRFToken": getCookie("csrftoken")}
+        });
+    });
+    let getCookie = (c_name) => {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + "=");
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1;
+                c_end = document.cookie.indexOf(';', c_start);
+                if (c_end == -1) c_end = document.cookie.length;
+                return unescape(document.cookie.substring(c_start, c_end));
+            }
+        }
+        return "";
+    }
+    // End of embeding csrf token
+    //Add reviews
+    let _word_review = $('#add-review').text();
+    let _click_clock = (elem) => {
+        let add_btn = elem;
+        if (add_btn.hasClass('btn-animation')) {
+            add_btn.removeClass('btn-animation');
+            add_btn.text('X');
+            add_btn.css('background-color', '#000');
+        }else{
+            add_btn.addClass('btn-animation');
+            add_btn.css('background-color', '#65ab36');
+            add_btn.text(_word_review);
+        } 
+        $('.wrap-form-reviews').toggle('slow');
+    }
+    $('#add-review').click((e) => {
+        let add_btn = $(e.target); 
+       _click_clock(add_btn);
+    });
+    $('#send-review').click((e) => {
+        e.preventDefault();
+        let customer_name = $('#review-name').val();
+        let customer_body = $('#review-body').val();
+        if (customer_name && customer_body) {
+            let review_obj = {
+                name: customer_name,
+                body: customer_body
+            }
+            $.ajax({
+                url: '',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(review_obj),
+                headers: {'X-Requested-With': 'XMLHttpRequest'},
+                success: (data) => {
+                   let data_obj = JSON.parse(data);
+                   let container = $('<div class="swiper-slide reviews-item"><span class="reviews-name"> <span>:</span></span><article class="reviews-body"></article><span class="date"></span></div>');
+                   
+                   container.find('.reviews-name').text(data_obj[0]['fields']['name']);
+                   container.find('.reviews-body').text(data_obj[0]['fields']['body']);
+                   container.find('.date').text(convert(data_obj[0]['fields']['created']));
+                   $(reviews.wrapperEl).prepend(container);
+                   reviews.update()
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+            _click_clock($('#add-review'));
+        }
+        let convert = (str_date) => {
+            let month = {
+                01: 'Jan',
+                02: 'Feb',
+                03: 'Mar',
+                04: 'Apr',
+                06: 'June',
+                07: 'July',
+                08: 'Aug',
+                09: 'Sep',
+                10: 'Oct',
+                11: 'Nov',
+                12: 'Dec'
+            }
+            let date = str_date.substring(0, 10);
+            let date_split = date.split('-');
+            let date_out = `${date_split[2]} ${month[Number(date_split[1])]} ${date_split[0]}`
+            return date_out;
+        }
+    });
+    //Add reviews end 
     //Initialization masonry
     (() => {
         let grid_list = document.querySelectorAll('.grid-item');
@@ -166,6 +265,9 @@ geo_close.click(() => {
 // Typing advertisment
 (() => {
     let ad = document.querySelector('#a_d_v');
+    if (!ad ) {
+        return;
+    }
     let ads = document.querySelectorAll('.adv');
     let ads_length = [].slice.call(ads).length;
     let ad_list = [].slice.call(ad.textContent);
@@ -183,6 +285,119 @@ geo_close.click(() => {
     let timer = setInterval( type, 300, ad_list);
 })();
 
+//Start callback
+$(function(){
+    $('.imgvk').hover(() => {
+        $(this).children('img').stop().animate({width:"240px",height:"400px"}, 500);
+    }, () => {
+        $(this).children('img').stop().animate({width:"120px",height:"240px"}, 500);
+    });
+});
 
+/* обратный звонок */
+let callBackWidjet = function(callbackBtn, form) {
+  if (!form)
+    form = document.querySelector('[data-id="'+callbackBtn.getAttribute("data-depend-form")+'"]');
+
+  let btnFormClose = form.querySelector('.callback-form__close');
+  // скрытие формы
+  let hideForm = function() {
+    let showing = '',
+        hiding = '';
+
+    if (form.classList.contains('fadeInDown')) {
+      showing = 'fadeInDown';
+      hiding = 'fadeOutUp';
+    }
+    else if (form.classList.contains('fadeInRight')) {
+      showing = 'fadeInRight';
+      hiding = 'fadeOutRight';
+    }
+    else {
+      showing = false;
+      hiding = false;
+    }
+
+    if (showing && showing.length > 0) {
+      form.classList.remove(showing);
+      form.classList.add(hiding);
+
+      setTimeout(function() {
+        form.classList.remove(hiding,'animated');
+        form.classList.add('-hidden');
+        callbackBtn.removeAttribute('disabled');
+      }, 1000);
+    }
+
+
+  };
+
+  callbackBtn.addEventListener("click", function(e){
+    let btn = this;
+    let callbackAttr = this.getAttribute('data-callback');
+
+    if (!btn.hasAttribute('disabled'))
+      btn.setAttribute('disabled', '');
+
+    form.classList.remove('callback-center-form');
+    form.classList.remove('callback-right-form');
+    form.classList.add('callback-' + callbackAttr + '-form');
+
+    form.classList.remove('fadeInDown');
+    form.classList.remove('fadeInRight');
+
+    if (callbackAttr == 'center')
+      form.classList.add('fadeInDown');
+    else if (callbackAttr == 'right')
+      form.classList.add('fadeInRight');
+
+    if (form.classList.contains('-hidden')) {
+      form.classList.remove('-hidden');
+      form.classList.add('animated');
+      btn.classList.add('-stop');
+    }
+  });
+
+  btnFormClose.addEventListener("click", function(e){
+    callbackBtn.classList.remove('-stop');
+    hideForm();
+  });
+  window.addEventListener('keydown', function(e) {
+    if (event.keyCode == 27) {
+      callbackBtn.classList.remove('-stop');
+      hideForm();
+    };
+  });
+
+  $('.callback-form__submit').click((e) => {
+    e.preventDefault();
+    let callback = $('#js-callback-phone').val();
+    let callback_data = {
+        phone_number: callback,
+    }
+    $.ajax({
+        url: 'mail',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(callback_data),
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
+        success: (data) => {
+            callbackBtn.classList.remove('-stop');
+            hideForm();
+        },
+        error: (error) => {
+
+        }
+    });
+  });
+
+};
+
+let callbackBtn = document.getElementById('callbackBtn');
+let form = document.querySelector('[data-id="form-callback"]');
+
+callBackWidjet(callbackBtn);
+
+//End callback
 
 

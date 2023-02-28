@@ -7,4 +7,5 @@ urlpatterns = [
 	path('team', views.team, name='team'), 
 	path('lang', views.lang, name='lang'),
 	path('services/lang', views.lang, name='lang'),
+	path('mail', views.mail, name='mail')
 ]

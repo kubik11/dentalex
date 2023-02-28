@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load humanize %}
+
+{% block title %}
+<title>Стоматология, стоматологическая клиника в Николаеве Денталекс</title>
+{% endblock %}
 
 {% block content %}
 		<!-- The page -->
         <div class="page">
             <div id="header">
                 <a href="#menu"><span></span></a>
-                DENTALEX
+                ДентаЛекс
             </div>
             <div class="content">
               {% include 'includes/header.html' %}
@@ -15,26 +20,26 @@
                   <div class="banner">
                     <div class="owl-carousel" id="owl_1">
                       <div class="banner-carousel-item">
-                        <img src= '{{ data_banner.banner_photo_1.url }}'>
+                        <img src= '{{ data_banner.banner_photo_1.url }}' alt="Изображение банер">
                         <div class="wrap-adv">
                           <h2 class="adv" id="a_d_v">{{ data_banner.banner_ad }}</h2>
                         </div>    
                       </div>
                        <div class="banner-carousel-item">
-                        <img src="{{ data_banner.banner_photo_2.url }}">
-                        <div class="wrap-adv"> <h2 class="adv">Dentalex</h2></div>
+                        <img src="{{ data_banner.banner_photo_2.url }}" alt="Изображение банер">
+                        <div class="wrap-adv"> <h2 class="adv">Денталекс</h2></div>
                       </div>
                         <div class="banner-carousel-item">
-                          <img src="{{ data_banner.banner_photo_3.url }}">
+                          <img src="{{ data_banner.banner_photo_3.url }}" alt="Изображение банер">
                           <div class="wrap-adv">
-                            <h2 class="adv">Dentalex</h2>
+                            <h2 class="adv">Денталекс</h2>
                           </div>
                         </div>
                         {% if data.banner_photo_4 %}
                           <div class="banner-carousel-item">
-                          <img src="{{ data_banner.banner_photo_4.url }}">
+                          <img src="{{ data_banner.banner_photo_4.url }}" alt="Изображение банер">
                           <div class="wrap-adv">
-                            <h2 class="adv">Dentalex</h2>
+                            <h2 class="adv">Денталекс</h2>
                           </div>
                         </div>
                         {% endif %}
@@ -48,12 +53,12 @@
                  <div class="wrap-offers-item container"> 
                   {% for item in data_service %}
                      <div class="offers-item">
-                       <img src="{{ item.service_photo.url }}">
-                       <div class="offers-item-inner">
+                       <img src="{{ item.service_photo.url }}" alt="Изображение сервис услуги">
+                       <h1 class="offers-item-inner">
                          <a href="{% url 'service_info' item.id %}">{{ item.service_title }}</a>
                        </div>
                        <div class="overlay"></div>
-                     </div>
+                     </h1>
                   {% endfor %}
                  </div>
                  <div class="wrap-more-service">
@@ -67,12 +72,51 @@
                   </h2>
                   <div class="grid">
                     {% for item in data_gallery %}
-                    <div class="grid-item"><img src="{{ item.photo.url }}"></div>
+                    <div class="grid-item"><img src="{{ item.photo.url }}" alt="Галерея"></div>
                     {% endfor %}
                   </div>
                 </div>   
                </section>
-
+               <!--Start reviews section -->
+               <section class="reviews">
+                <div class="wrap-reviews container">
+                  <h3 class="cap-tion">
+                    Наші відгуки
+                  </h3>
+                  <div class="swiper swiper-reviews">
+                    <div class="swiper-wrapper">
+                      {% for item in data_reviews %}
+                      <div class="swiper-slide reviews-item">
+                        <span class="reviews-name">{{ item.name }} :</span>
+                        <article class="reviews-body">{{ item.body }}</article>
+                        <span class="date">{{ item.created|date:"d M Y" }}</span>
+                      </div>
+                      {% endfor %}
+                    </div>
+                    <div class="reviews-pagination swiper-pagination"></div>
+                  </div>
+                  <div class="wrap-reviews-btn">
+                    <button class="btn btn-primary btn-animation" type="button" id="add-review">Додати відгук</button>
+                    <div class="wrap-form-reviews">
+                      <form id="review-form">
+                        <div class="mb-3">
+                          <label for="review-name" class="form-label"> Ім'я </label>
+                          <input type="text" class="form-control" id="review-name" placeholder="Ваше ім'я" name="review-name">
+                        </div>
+                        <div class="mb-3">
+                          <label for="review-body" class="form-label"> Ваші відгуки </label>
+                          <textarea class="form-control" id="review-body" rows="3" name="review-body"></textarea>
+                        </div>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-animation" id="send-review">
+                          Відправити
+                        </button>
+                      </form>
+                    </div>
+                  </div>  
+                </div> 
+               </section>
+               <!--End reviews section -->
             {% include 'includes/footer.html' %}
 
             </div>

@@ -2,12 +2,16 @@
 
 {% load static %}
 
+{% block title %}
+<title>Специалисты стоматологической клиники Денталекс</title>
+{% endblock %}
+
 {% block content %}
 		<!-- The page -->
         <div class="page">
             <div id="header">
                 <a href="#menu"><span></span></a>
-                DENTALEX
+                ДентаЛекс
             </div>
             <div class="content">
 
@@ -21,7 +25,7 @@
                  {% for item in data_team %} 
                     <div class="team-item">
                        <div class="team-photo">
-                         <img src="{{ item.team_photo.url }}">
+                         <img src="{{ item.team_photo.url }}" alt="Фото персонала">
                        </div>
                        <div class="team-inner">
                          <span class="team-position">{{ item.team_position }}</span>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Banner, Service, Team, SocialLink, Gallery
+from .models import Banner, Service, Team, SocialLink, Gallery, Review
 from django.utils.html import format_html
 # Register your models here.
 class BannerAdmin(admin.ModelAdmin):
@@ -36,9 +36,14 @@ class GalleryAdmin(admin.ModelAdmin):
 	list_display = ('id','thambnail', 'choused')
 	list_display_links = ('id', 'thambnail', 'choused')	
 
+class ReviewAdmin(admin.ModelAdmin):
+	list_display = ('id', 'created', 'name', 'active')
+	list_display_links = ('id', 'created', 'name', 'active')
+
 admin.site.register( Banner, BannerAdmin )
 admin.site.register( Service, ServiceAdmin )
 admin.site.register( Team, TeamAdmin )
 admin.site.register( SocialLink, SocialLinkAdmin)
 admin.site.register( Gallery, GalleryAdmin)
+admin.site.register(Review, ReviewAdmin)
 

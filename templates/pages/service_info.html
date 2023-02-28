@@ -2,12 +2,16 @@
 
 {% load static %}
 
+{% block title %}
+<title>{{ data_info.service_title }}</title>
+{% endblock %}
+
 {% block content %}
 		<!-- The page -->
         <div class="page">
             <div id="header">
                 <a href="#menu"><span></span></a>
-                DENTALEX
+                 ДентаЛекс
             </div>
             <div class="content">
 
@@ -16,9 +20,9 @@
               	 <article class="article"> 
                   <div class="container">
                     <div class="wrap-article">
-                      <h2 class="cap-tion">{{ data_info.service_title }}</h2>
+                      <h1 class="cap-tion">{{ data_info.service_title }}</h1>
                       <div class="wrap-article-img">  
-                         <img src="{{ data_info.service_photo.url }}">
+                         <img src="{{ data_info.service_photo.url }}" alt="Изображение сервис услуги">
                       </div>
                       <div class="description">
                       	<p>{{ data_info.service_description|safe }}</p>
