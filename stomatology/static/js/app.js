@@ -171,9 +171,22 @@ $("#owl_1").owlCarousel({
     //navigation : true
 });
 
+let number_increment = (delay = 100) => {
+    let elem = $('.dentalex-ad-body-quantity');
+    let quantity = Number(elem.text());
+    let delay_ = delay;
+    if (quantity == 10000) {
+        return;
+    }
+    quantity += 1;
+    elem.text(quantity);
+    setTimeout(number_increment, delay_, delay_- 10);
+}
+let increment_flag = false; // changed when scrolled to smile section
 $(window).scroll(function(){
     let element_height = $('#header').height();	
     let element = $('.wrap-social-widget');
+    let smiles = $('#smiles_section');
     let trigger = true;
     //window.screen.width < 769
     if( trigger && $(this).scrollTop()>=element_height){
@@ -186,6 +199,12 @@ $(window).scroll(function(){
     	console.log($(this).scrollTop());
     	element.removeClass('fixed');
     	trigger = true;
+    }
+    if($(this).scrollTop() > smiles.position().top - 200) {
+        if(!increment_flag){
+            number_increment();
+            increment_flag = true;
+        }
     }
 });
 

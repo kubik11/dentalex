@@ -15,8 +15,8 @@ class ServiceAdmin(admin.ModelAdmin):
 		return format_html( f'<img src="{object.service_photo.url}" width="40" height="40" style="border-radius: 50px;"/>')
 
 	thambnail.short_description = "Service photo"
-	list_display = ('id', 'thambnail', 'service_photo')
-	list_display_links = ('id', 'thambnail', 'service_photo')
+	list_display = ('id', 'thambnail', 'service_photo', 'service_prise_flag')
+	list_display_links = ('id', 'thambnail', 'service_photo', 'service_prise_flag')
 
 class TeamAdmin(admin.ModelAdmin):
 	def thambnail(self, object):

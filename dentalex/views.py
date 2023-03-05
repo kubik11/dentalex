@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.core.mail import send_mail
 from django.conf import settings
+#from .telegram_bot import send_telegram_message
+import telegram_send
 import json
 # Create your views here.
 def mail(request):
@@ -12,8 +14,13 @@ def mail(request):
 		if request.method == 'POST':
 			data = json.load(request)
 			phone_number = data.get('phone_number')
-			send_mail('Обратный звонок', str(phone_number), settings.DEFAULT_FROM_EMAIL, [settings.DEFAULT_TO_EMAIL], fail_silently=False)
-			return JsonResponse({'message': 'message changed!' })
+			try:
+				send_mail('Обратный звонок', str(phone_number), settings.DEFAULT_FROM_EMAIL, [settings.DEFAULT_TO_EMAIL], fail_silently=False)
+				telegram_send.send(messages=[str(phone_number)])
+				return JsonResponse({'message': 'message sended!' })
+			except ConnectionError:
+				telegram_send.send(messages=[str(phone_number)])
+				return JsonResponse({'message': 'Only telegram!' })
 def lang(request):
 	is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
 	if is_ajax:

@@ -211,3 +211,7 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Token for telegram bot 
+TELEGRAM_TOKEN = '6092923544:AAE5_xKirWFPSQYSLLquJFDqNZ0onUR8UdE'
+TELEGRAM_CHAT_ID = 835083351

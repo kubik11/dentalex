@@ -16,7 +16,8 @@ class Service(models.Model):
 	service_photo_1 = models.ImageField(upload_to = 'photos', blank = True)
 	service_photo_2 = models.ImageField(upload_to = 'photos', blank = True)
 	service_prise_from = models.IntegerField()
-	service_prise_to = models.IntegerField()
+	service_prise_flag = models.BooleanField(default = False)
+	service_prise_to = models.IntegerField(blank=False)
 	service_description = RichTextField()
 
 class Team(models.Model):

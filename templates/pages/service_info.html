@@ -28,6 +28,16 @@
                       	<p>{{ data_info.service_description|safe }}</p>
                       </div>  
                     </div>
+                    <div class="service-price">
+                      {% if data_info.service_prise_flag %}
+                      <h3 class="service-price-val"> Вартість послуги від <span class="val">{{ data_info.service_prise_from }}</span>
+                      {% if data_info.service_prise_to %}
+                        до <span class="val">{{data_info.service_prise_to}}</span>
+                      {% endif %}
+                       грн
+                      </h3>
+                      {% endif %}
+                    </div>
                   </div>
                 </article>
 

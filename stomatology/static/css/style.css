@@ -839,7 +839,43 @@ nav:not(.mm-menu) {
   padding: 15px 0px;
 }
 /*Reviews section end*/
+/*Smiles section start*/
+.smiles {
+  background-color: #ededed;
+  padding: 40px 0px;
+  text-align: center;
+  box-shadow: 0px 4px 18px -6px #000;
+  position: relative;
+}
+.quantity-ad-wrap {
+  font-size: 40px;
+  font-weight: bold;
+  padding: 0px 10px;
+  color:  #65ab36;
+}
+.wrap-smiles {
 
+}
+.smiles-title {
+  font-weight: bold;
+  font-size: 50px;
+}
+.dentalex-ad-body {
+  font-size: 30px;
+  font-family: "Caveat", cursive;
+}
+.dentalex-ad-body-quantity {
+  color: #65ab36
+  font-size: 50px;
+  line-height: 1.5;
+}
+/*Smiles section end*/
+
+/*Service price start*/
+.service-price-val .val {
+  color: #65ab36;
+}
+/*Service price end*/
 /*@import './untils/variables'*/
 @media only screen and (max-width: 400px) {
   .geolocation-popup {
